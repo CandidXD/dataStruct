@@ -1,6 +1,7 @@
 package queue
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -84,7 +85,10 @@ func (q *CircularQueue) ShowQueue() {
 }
 
 // NewQueue 创建队列
-func NewCircularQueue(maxSize int) *CircularQueue {
+func NewCircularQueue(maxSize int) (circularQueue *CircularQueue, err error) {
+	if maxSize < 1 {
+		return nil, errors.New("队列长度不能小于1")
+	}
 	q := new(CircularQueue)
 	q.maxSize = maxSize
 	q.front = -1
@@ -92,5 +96,5 @@ func NewCircularQueue(maxSize int) *CircularQueue {
 	for i := 0; i < maxSize; i++ {
 		q.array = append(q.array, 0)
 	}
-	return q
+	return q, nil
 }
