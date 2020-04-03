@@ -1,2 +1,2 @@
 # dataStruct
-GOlang数据结构实现
+Golang数据结构实现
